@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Animation/FadeAnimation.dart';
 import 'space_screen.dart';
-import 'custom_top_bar.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -27,12 +26,25 @@ class _HomePageState extends State<HomePage> {
     return WillPopScope(
       onWillPop: _showDialog,
       child: Scaffold(
-          appBar: TopBar(
-            onPressed: () {},
-            child: Text(''),
-            title: "CliCk Chat",
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            title: Text('CliCk Chat'),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: <Color>[Colors.teal, Colors.white])),
+            ),
           ),
-          backgroundColor: Colors.teal,
+
+          // appBar: TopBar(
+          //   onPressed: () {},
+          //   child: Text(''),
+          //   title: "CliCk Chat",
+          // ),
+          // backgroundColor: Colors.teal,
           body: SingleChildScrollView(
             child: Container(
               child: Column(
@@ -40,30 +52,36 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/background.png'),
-                            colorFilter:
-                                ColorFilter.mode(Colors.teal, BlendMode.color),
-                            fit: BoxFit.fill)),
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/background.png'),
+                          colorFilter:
+                              ColorFilter.mode(Colors.teal, BlendMode.color),
+                          fit: BoxFit.fill),
+                    ),
                     child: Stack(
                       children: <Widget>[
                         Positioned(
                           left: 30,
                           width: 80,
                           height: 200,
+                          top: -30,
                           child: FadeAnimation(
                               0.1,
                               Container(
                                 decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/light-2.png'))),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      'assets/images/light-2.png',
+                                    ),
+                                  ),
+                                ),
                               )),
                         ),
                         Positioned(
                           left: 150,
                           width: 80,
                           height: 150,
+                          top: 0,
                           child: FadeAnimation(
                               0.1,
                               Container(
@@ -75,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Positioned(
                           right: 40,
-                          top: 40,
+                          top: 0,
                           width: 80,
                           height: 150,
                           child: FadeAnimation(
